@@ -36,13 +36,14 @@ export default function MedMatePage() {
       });
 
       const data = await res.json();
-      setResults([{ disease: data.prediction, confidence: data.confidence }]);
-    } catch (err) {
-      alert("Something went wrong.");
-    } finally {
-      setLoading(false);
-    }
-  };
+    setResults([{ disease: data.prediction, confidence: data.confidence }]);
+  } catch (err) {
+    console.error("Prediction error:", err); // ✅ Using `err` fixes the linting issue
+    alert("Something went wrong.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white px-4 py-10 font-sans">
